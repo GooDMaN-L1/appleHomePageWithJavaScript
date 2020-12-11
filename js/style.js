@@ -30,7 +30,7 @@ search.onclick = function(){
 	}
 	search.isCreate = !search.isCreate;
 }
-login.onclick = function () {
+login.onclick = function (){
 	var account = null;
 	var password = null;
 	account = prompt('请输入用户名：');
@@ -59,9 +59,9 @@ gift.onmouseover = function(){
 }
 gift.onmouseout = function(){
 	clearInterval(gift.timeid);
+	gift.angle %= 360;
 	gift.timeid = setInterval(function(){
-		gift.angle -= 2;
-		gift.style.transform = 'rotate(' + gift.angle + 'deg)';
+		gift.style.transform = 'rotate(' + --gift.angle + 'deg)';
 		if(gift.angle <= 0){
 			clearInterval(gift.timeid);
 		}
