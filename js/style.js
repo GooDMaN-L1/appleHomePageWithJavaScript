@@ -11,7 +11,7 @@ search.isCreate = false;
 gift.angle = 0;
 pic.initHeight = pic.offsetHeight;
 
-search.onclick = function(ev){
+search.onclick = function(){
 	if(search.isCreate){
 		document.onmousemove = null;
 		document.body.removeChild(div);
