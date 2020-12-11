@@ -11,8 +11,6 @@ search.isCreate = false;
 gift.angle = 0;
 pic.initHeight = pic.offsetHeight;
 
-pro.onclick = change;
-wwdc.onclick = change;
 search.onclick = function(ev){
 	if(search.isCreate){
 		document.onmousemove = null;
@@ -53,13 +51,21 @@ login.onclick = function () {
 	}
 }
 gift.onmouseover = function(){
-	gift.timeid = setInterval(function(){
-		gift.style.transform = 'rotate(' + ++gift.angle + 'deg)';
-		gift.style.transition = '0.1s linear';
-	}, 100);
+	if(gift.angle <= 0){
+		gift.timeid = setInterval(function(){
+			gift.style.transform = 'rotate(' + ++gift.angle + 'deg)';
+		}, 10);
+	}
 }
 gift.onmouseout = function(){
 	clearInterval(gift.timeid);
+	gift.timeid = setInterval(function(){
+		gift.angle -= 2;
+		gift.style.transform = 'rotate(' + gift.angle + 'deg)';
+		if(gift.angle <= 0){
+			clearInterval(gift.timeid);
+		}
+	}, 1);
 }
 pic.onmouseover = function(){
 	var h = pic.offsetHeight;
@@ -73,9 +79,8 @@ pic.onmouseout = function() {
 	clearInterval(pic.timeid);
 	pic.style.height = pic.initHeight + 'px'
 }
-function isLegalAccount(str){
-	str.contain('');
-}
+pro.onclick = change;
+wwdc.onclick = change;
 function change(){
 	if(isChange){
 		animate(pro,{left:0});
@@ -87,11 +92,7 @@ function change(){
 	isChange = !isChange;
 }		
 function getStyle(obj, attr){
-	if(obj.currentStyle){
-		return obj.currentStyle[attr];
-	} else {
-		return getComputedStyle(obj)[attr];
-	}
+	return obj.currentStyle ? obj.currentStyle[attr] : getComputedStyle(obj)[attr];
 }
 function animate(obj,json){
 	clearInterval(obj.timer);
