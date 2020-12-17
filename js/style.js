@@ -17,9 +17,7 @@ gift.angle = 0;
 pic.initHeight = pic.offsetHeight;
 
 nav.onmouseover = function(){
-	console.log("nmdl");
 	if(boxs.isAppear == false){
-
 		var i = 0;
 		boxs.isAppear = true;
 		var outterID = setInterval(function(){
