@@ -5,12 +5,66 @@ var div = null,
 	gift = document.getElementById('gift'),
 	pic = document.getElementById("pic"),
 	pro = document.getElementById('pro'),
-	wwdc = document.getElementById('wwdc');
+	wwdc = document.getElementById('wwdc'),
+	boxs = document.getElementById("boxs"),
+	nav = document.getElementById("nav"),
+	box = boxs.children;
 
+boxs.isAppear = false;
+boxs.isOver = false;
 search.isCreate = false;
 gift.angle = 0;
 pic.initHeight = pic.offsetHeight;
 
+nav.onmouseover = function(){
+	console.log("nmdl");
+	if(boxs.isAppear == false){
+
+		var i = 0;
+		boxs.isAppear = true;
+		var outterID = setInterval(function(){
+			var nowbox = box[i];
+			var innerID = setInterval(function(){
+				var newleft = parseInt(getStyle(nowbox, "left")) - 1;
+				nowbox.style.opacity = (80 - newleft) * 0.01;
+				nowbox.style.left = newleft + "px";
+				if(newleft == 0){
+					clearInterval(innerID);
+					if(parseInt(box[box.length - 1].style.left) == 0){
+						boxs.isOver = true;
+					}
+				}
+			}, 5);
+			if(++i == box.length){
+				clearInterval(outterID);
+			}
+		},100);
+	}
+}
+boxs.onmouseout = function(){
+	if(boxs.isOver == true){
+		var i = 0;
+		boxs.isOver = false;
+		var outterID = setInterval(function(){
+			var nowbox = box[i];
+			var innerID = setInterval(function(){
+				var newleft = parseInt(getStyle(nowbox, "left")) - 1;
+				nowbox.style.opacity = (newleft + 80) * 0.01;
+				nowbox.style.left = newleft + "px";
+				if(newleft == -80){
+					clearInterval(innerID);
+					nowbox.style.left = -newleft + "px";
+					if(parseInt(box[box.length - 1].style.left) == 80){
+						boxs.isAppear = false;
+					}
+				}
+			}, 5);
+			if(++i == box.length){
+				clearInterval(outterID);
+			}
+		},100);
+	}
+}
 search.onclick = function(){
 	if(search.isCreate){
 		document.onmousemove = null;
