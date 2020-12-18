@@ -39,7 +39,13 @@ nav.onmouseover = function(){
 		},100);
 	}
 }
+for(var i = 0; i < box.length; i ++){
+	box[i].onmouseout = function(e){
+		e.stopPropagation();
+	}
+}
 boxs.onmouseout = function(){
+	console.log("woc");
 	if(boxs.isOver == true){
 		var i = 0;
 		boxs.isOver = false;

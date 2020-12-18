@@ -40,11 +40,11 @@
 	background: url(../images/search2.png) no-repeat center center;
 }
 #boxs{
-	width: 720px;
-	height: 100px;
+	width: 760px;
+	height: 120px;
 	margin: 0 auto;
 }
-#boxs div{
+#boxs a{
 	width: 120px;
 	height: 100px;
 	color: white;
@@ -56,9 +56,8 @@
 	display: inline-block;
 	position: relative;
 	left: 80px;
-	z-index: -1;
 }
-#boxs div img{
+#boxs a img{
 	width: 80px;
 	height: 70px;
 	display: block;
